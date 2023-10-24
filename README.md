@@ -9,6 +9,14 @@ Currently, two official plugins are available:
 
 ## Commands
 
+npm create vite@latest 
+
 npm i
 
 npm run dev
+
+
+
+
+phosphor icons
+npm install phosphor-react
