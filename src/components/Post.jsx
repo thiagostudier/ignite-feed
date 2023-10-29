@@ -1,48 +1,76 @@
-import styles from './Post.module.css'
+import { Avatar } from './Avatar';
+import { Comment } from './Comment';
 
-export function Post() {
+import styles from './Post.module.css'
+import { useState } from 'react';
+
+import { format, formatDistanceToNow } from 'date-fns'
+import ptBR from 'date-fns/locale/pt-BR'
+
+export function Post({ author, publishedAt, content }) {
+
+  const publishedDateFormatted = format(publishedAt, "d 'de' LLLL 'às' HH:mm'h'", { locale: ptBR })
+  const publishedDateRelativeNow = formatDistanceToNow(publishedAt, { locale: ptBR, addSuffix: true })
+
+  const [comments, setComments] = useState(['Post muito bacana'])
+
+  const [newCommentText, setNewCommentText] = useState('')
+
+  function handleCreateNewComment() {
+    event.preventDefault()
+
+    /** Atualizar os dados dos comentários */
+    setComments([...comments, newCommentText])
+
+    setNewCommentText('')
+  }
+
+  function handleNewCommentChange() {
+    setNewCommentText(event.target.value)
+  }
+
   return (
     <article className={styles.post}>
       <header className={styles['post--header']}>
         <div className={styles['post--author']}>
-          <img 
-            className={styles["post--avatar"]} 
-            src="https://github.com/thiagostudier.png"
-          />
+          <Avatar src={author.avatarUrl} />
 
-          <div class={styles['post--author-info']}>
-            <strong className={styles["post--name"]}>Thiago Studier</strong>
-            <span className={styles["post--role"]}>Frontend Developer</span>
+          <div className={styles['post--author-info']}>
+            <strong className={styles["post--name"]}>{ author.name }</strong>
+            <span className={styles["post--role"]}>{ author.role }</span>
           </div>
         </div>
 
         <time 
-          title="21 de Setembro às 08:13"
-          dateTime="2023-09-21 00:00:00"
+          title={publishedDateFormatted}
+          dateTime={publishedAt.toISOString()}
           className={styles["post--time"]}
         >
-          Publicado há 1h
+          {publishedDateRelativeNow}
         </time>
       </header>
 
       <div className={styles['post--content']}>
-        <p>Fala galera</p>
-        <p>Acabei de subir mais um projeto no meu portifólio. É um projeto que fiz no NLW Return, evento da Rocketseat.</p>
-        <p>
-          <a href="">#novoprojeto</a>{' '}
-          <a href="">#nlw</a>{' '}
-          <a href="">#rocketseat</a>
-        </p>
+        {content.map(line => {
+          if (line.type === 'paragraph') {
+            return <p>{line.content}</p>
+          } else if (line.type === 'link') {
+            return <p><a href="#">{line.content}</a></p>
+          }
+        })}
       </div>
 
-      <form className={styles.commentary}>
+      <form onSubmit={handleCreateNewComment} className={styles.commentary}>
         <strong className={styles['commentary--title']}>
           Deixe seu comentário
         </strong>
 
         <textarea 
+          name="content"
           className={styles['commentary--textarea']} 
           placeholder="Deixe seu comentário" 
+          value={newCommentText}
+          onChange={handleNewCommentChange}
         />
 
         <footer className={styles['commentary--footer']}>
@@ -50,10 +78,16 @@ export function Post() {
             className={styles['commentary--button']} 
             type="submit"
           >
-            Comentar
+            Publicar
           </button>
         </footer>
       </form>
+
+      <div className={styles['commentary--list']}>
+        {comments.map(comment => {
+          return <Comment content={comment} />
+        })}
+      </div>
     </article>
   );
 }
