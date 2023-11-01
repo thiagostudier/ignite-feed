@@ -1,27 +1,55 @@
-# React + TypeScript + Vite
+# Ignite Feed
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+![Screenshot](./screenshot.png)
 
-Currently, two official plugins are available:
+Este é um projeto desenvolvido como parte do curso "Fundamentos do ReactJS" da Rocketseat. O principal objetivo deste projeto é aprender e solidificar conhecimentos em React, Typescript e Javascript.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Como começar
 
-## Expanding the ESLint configuration
+Siga as instruções abaixo para baixar e executar o projeto em sua máquina local.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+### Pré-requisitos
 
-- Configure the top-level `parserOptions` property like this:
+Certifique-se de ter o [Node.js](https://nodejs.org/) instalado em sua máquina.
 
-```js
-   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-   },
-```
+### Instalação
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+1. Clone este repositório em sua máquina local:
+
+   ```bash
+   git clone https://github.com/thiagostudier/ignite-feed
+   ```
+2. Navegue até o diretório do projeto:
+
+ ```bash
+   npm install
+   ```
+
+3. Execute o projeto:
+
+ ```bash
+   npm run dev
+   ```
+
+O projeto agora estará rodando em http://localhost:3000.
+
+### Bibliotecas utilizadas
+
+Durante o desenvolvimento deste projeto, as seguintes bibliotecas foram adicionadas:
+
+*Phosphor Icons* - Uma biblioteca de ícones.
+
+```bash
+   npm install phosphor-react
+   ```
+
+*date-fns* - Uma biblioteca para manipulação de datas.
+Para adicioná-la ao projeto, execute o seguinte comando:
+
+```bash
+   npm install date-fns
+   ```
+
+### Contribuição
+
+Este projeto foi criado com o propósito de aprendizado. Se você quiser contribuir ou tiver sugestões para melhorar o projeto, fique à vontade para abrir uma issue ou enviar um pull request.
