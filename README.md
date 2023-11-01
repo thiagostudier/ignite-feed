@@ -1,7 +1,5 @@
 # Ignite Feed
 
-![Screenshot](./screenshot.png)
-
 Este é um projeto desenvolvido como parte do curso "Fundamentos do ReactJS" da Rocketseat. O principal objetivo deste projeto é aprender e solidificar conhecimentos em React, Typescript e Javascript.
 
 ## Como começar
