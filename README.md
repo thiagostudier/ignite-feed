@@ -14,20 +14,20 @@ Certifique-se de ter o [Node.js](https://nodejs.org/) instalado em sua máquina.
 
 1. Clone este repositório em sua máquina local:
 
-   ```bash
-   git clone https://github.com/thiagostudier/ignite-feed
-   ```
+```bash
+git clone https://github.com/thiagostudier/ignite-feed
+```
 2. Navegue até o diretório do projeto:
 
- ```bash
-   npm install
-   ```
+```bash
+npm install
+```
 
 3. Execute o projeto:
 
- ```bash
-   npm run dev
-   ```
+```bash
+npm run dev
+```
 
 O projeto agora estará rodando em http://localhost:3000.
 
@@ -38,15 +38,15 @@ Durante o desenvolvimento deste projeto, as seguintes bibliotecas foram adiciona
 *Phosphor Icons* - Uma biblioteca de ícones.
 
 ```bash
-   npm install phosphor-react
-   ```
+npm install phosphor-react
+```
 
 *date-fns* - Uma biblioteca para manipulação de datas.
 Para adicioná-la ao projeto, execute o seguinte comando:
 
 ```bash
-   npm install date-fns
-   ```
+npm install date-fns
+```
 
 ### Contribuição
 
