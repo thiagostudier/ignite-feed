@@ -105,7 +105,12 @@
   transition: background-color 0.1s;  
 }
 
-.commentary--button:hover {
+.commentary--button:disabled {
+  cursor: not-allowed;
+  opacity: .7;
+}
+
+.commentary--button:not(:disabled):hover {
   background: var(--green-300);
 }
 

@@ -11,7 +11,7 @@ Currently, two official plugins are available:
 
 npm create vite@latest 
 
-npm i
+npm install
 
 npm run dev
 
@@ -20,3 +20,4 @@ npm run dev
 
 phosphor icons
 npm install phosphor-react
+npm install date-fns

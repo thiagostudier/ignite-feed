@@ -15,7 +15,7 @@ export function Post({ author, publishedAt, content }) {
   const [comments, setComments] = useState(['Post muito bacana'])
 
   const [newCommentText, setNewCommentText] = useState('')
-
+  
   function handleCreateNewComment() {
     event.preventDefault()
 
@@ -26,8 +26,23 @@ export function Post({ author, publishedAt, content }) {
   }
 
   function handleNewCommentChange() {
+    event.target.setCustomValidity('')
     setNewCommentText(event.target.value)
   }
+
+  function handleNewCommentInvalid() {
+    event.target.setCustomValidity('Esse campo é obrigatório!')
+    setNewCommentText(event.target.value)
+  }
+
+  function deleteComment(commentToDelete) {
+    const commentsWithoutDeletedOne = comments.filter(comment => {
+      return comment !== commentToDelete
+    })
+    setComments(commentsWithoutDeletedOne)
+  }
+
+  const isNewCommentInputEmpty = newCommentText.length === 0
 
   return (
     <article className={styles.post}>
@@ -51,11 +66,11 @@ export function Post({ author, publishedAt, content }) {
       </header>
 
       <div className={styles['post--content']}>
-        {content.map(line => {
+        {content.map((line, i) => {
           if (line.type === 'paragraph') {
-            return <p>{line.content}</p>
+            return <p key={i}>{line.content}</p>
           } else if (line.type === 'link') {
-            return <p><a href="#">{line.content}</a></p>
+            return <p key={i}><a href="#">{line.content}</a></p>
           }
         })}
       </div>
@@ -71,12 +86,15 @@ export function Post({ author, publishedAt, content }) {
           placeholder="Deixe seu comentário" 
           value={newCommentText}
           onChange={handleNewCommentChange}
+          onInvalid={handleNewCommentInvalid}
+          required
         />
 
         <footer className={styles['commentary--footer']}>
           <button 
             className={styles['commentary--button']} 
             type="submit"
+            disabled={isNewCommentInputEmpty}
           >
             Publicar
           </button>
@@ -84,8 +102,14 @@ export function Post({ author, publishedAt, content }) {
       </form>
 
       <div className={styles['commentary--list']}>
-        {comments.map(comment => {
-          return <Comment content={comment} />
+        {comments.map((comment, i) => {
+          return (
+            <Comment 
+              key={i} 
+              content={comment} 
+              onDeleteComment={deleteComment}
+            />
+          )
         })}
       </div>
     </article>
